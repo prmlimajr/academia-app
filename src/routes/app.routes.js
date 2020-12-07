@@ -1,0 +1,72 @@
+import React from 'react';
+import { MaterialIcons } from '@expo/vector-icons';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+const AppStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+import Header from '../components/Header';
+import Profile from '../pages/Profile';
+import Historic from '../pages/Historic';
+import HistoricDetail from '../pages/Historic/HistoricDetail';
+import Dashboard from '../pages/Dashboard';
+import DailyTrainning from '../pages/DailyTrainning';
+import TrainningDetail from '../pages/DailyTrainning/TrainningDetail';
+
+export default function AppRoutes() {
+  function TrainningStack() {
+    return (
+      <AppStack.Navigator screenOptions={{ headerShown: false }}>
+        <AppStack.Screen name='Dashboard' component={Dashboard} />
+        <AppStack.Screen name='Treino do dia' component={DailyTrainning} />
+        <AppStack.Screen name='Exercício' component={TrainningDetail} />
+      </AppStack.Navigator>
+    );
+  }
+  return (
+    <>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: () => {
+            let iconName;
+
+            switch (route.name) {
+              case 'Seu Perfil':
+                iconName = 'account-box';
+                break;
+
+              case 'Treino do dia':
+                iconName = 'fitness-center';
+                break;
+
+              case 'Histórico':
+                iconName = 'calendar-today';
+                break;
+
+              default:
+                iconName = null;
+            }
+
+            return <MaterialIcons name={iconName} size={46} color='#0B4455' />;
+          },
+        })}
+        initialRouteName='Treino do dia'
+        tabBarOptions={{
+          activeTintColor: '#0B4455',
+          labelStyle: {
+            fontSize: 16,
+          },
+          style: {
+            backgroundColor: '#f0f0f0',
+            height: Platform.OS === 'ios' ? 110 : 90,
+          },
+        }}
+      >
+        <Tab.Screen name='Seu Perfil' component={Profile} />
+        <Tab.Screen name='Treino do dia' component={TrainningStack} />
+        <Tab.Screen name='Histórico' component={Historic} />
+      </Tab.Navigator>
+    </>
+  );
+}
