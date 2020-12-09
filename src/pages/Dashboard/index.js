@@ -3,6 +3,12 @@ import { View, Text, ImageBackground } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
+import { AppLoading } from 'expo';
+import {
+  useFonts,
+  RobotoCondensed_400Regular,
+} from '@expo-google-fonts/roboto-condensed';
+
 import Dumbbell from '../../assets/dumbbell.png';
 import styles from './styles';
 
@@ -16,15 +22,23 @@ export default function Dashboard() {
     navigation.navigate('Treino do dia');
   }
 
-  return (
-    <View style={styles.container}>
-      <ImageBackground source={Dumbbell} style={styles.bcg}>
-        <View style={styles.body}>
-          <RectButton style={styles.startBtn} onPress={() => handleStart()}>
-            <Text style={styles.btnText}>INICIAR TREINO</Text>
-          </RectButton>
-        </View>
-      </ImageBackground>
-    </View>
-  );
+  let [fontsLoaded] = useFonts({
+    RobotoCondensed_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View style={styles.container}>
+        <ImageBackground source={Dumbbell} style={styles.bcg}>
+          <View style={styles.body}>
+            <RectButton style={styles.startBtn} onPress={() => handleStart()}>
+              <Text style={styles.btnText}>INICIAR TREINO</Text>
+            </RectButton>
+          </View>
+        </ImageBackground>
+      </View>
+    );
+  }
 }

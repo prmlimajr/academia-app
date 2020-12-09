@@ -29,6 +29,7 @@ export default StyleSheet.create({
   },
   btnText: {
     fontSize: 20,
+    fontFamily: 'RobotoCondensed_400Regular',
     color: '#000',
   },
 });
