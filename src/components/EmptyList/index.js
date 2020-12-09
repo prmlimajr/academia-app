@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 import { AppLoading } from 'expo';
 import {
@@ -18,7 +19,7 @@ export default function EmptyList() {
   } else {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <MaterialIcons name='error' size={42} color='#3A362D' />
+        <Feather name='alert-triangle' size={40} color='#3A362D' />
         <Text
           style={{
             color: '#3A362D',

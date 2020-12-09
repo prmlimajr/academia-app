@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 import Loader from '../../components/Loader';
 import EmptyList from '../../components/EmptyList';
@@ -35,7 +36,7 @@ export default function DailyTrainning() {
             repetitions: 15,
             interval: 60,
             series: 4,
-            load: null,
+            load: 2,
             img: 'src/assets/sport.png',
           },
           {
@@ -44,7 +45,7 @@ export default function DailyTrainning() {
             repetitions: 15,
             interval: 60,
             series: 4,
-            load: null,
+            load: 3,
             img: 'src/assets/sport.png',
           },
           {
@@ -53,7 +54,7 @@ export default function DailyTrainning() {
             repetitions: 15,
             interval: 60,
             series: 4,
-            load: null,
+            load: 2,
             img: 'src/assets/sport.png',
           },
           {
@@ -144,10 +145,11 @@ export default function DailyTrainning() {
                         }
                       />
                     ) : (
-                      <MaterialIcons
-                        name='check_circle_outline'
-                        size={20}
+                      <Feather
+                        name='check'
+                        size={30}
                         color='#0B4455'
+                        onPress={() => {}}
                       />
                     )}
                   </View>

@@ -6,7 +6,6 @@ import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
 
 import { useAuth } from '../hooks/auth';
-import Header from '../components/Header';
 
 export default function Routes() {
   const { user, loading } = useAuth();
@@ -14,12 +13,5 @@ export default function Routes() {
   if (loading) {
     return <Loader />;
   }
-  return user ? (
-    <>
-      <Header />
-      <AppRoutes />
-    </>
-  ) : (
-    <AuthRoutes />
-  );
+  return user ? <AppRoutes /> : <AuthRoutes />;
 }

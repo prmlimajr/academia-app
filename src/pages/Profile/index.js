@@ -9,22 +9,20 @@ import {
 } from 'react-native';
 // import * as DateFNS from 'date-fns';
 import { Feather } from '@expo/vector-icons';
-
+import { AppLoading } from 'expo';
 import {
   useFonts,
   RobotoSlab_400Regular,
   RobotoSlab_700Bold,
 } from '@expo-google-fonts/roboto-slab';
 
-import { AppLoading } from 'expo';
-
+import FocusAwareStatusBar from '../../hooks/statusBar';
 import ProfileBG from '../../assets/profile.png';
+import ProfilePic from '../../assets/profilepic.jpeg';
 
 import styles from './styles';
 
 import { useAuth } from '../../hooks/auth';
-
-import ProfilePic from '../../assets/profilepic.jpeg';
 
 export default function Profile() {
   const { user } = useAuth();
@@ -40,22 +38,27 @@ export default function Profile() {
     return <AppLoading />;
   } else {
     return (
-      <ImageBackground source={ProfileBG} style={(styles.bcg, { flex: 1 })}>
+      <ImageBackground source={ProfileBG} style={styles.bcg}>
+        <FocusAwareStatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent={true}
+        />
         <View style={styles.header}>
-          <Image
-            source={ProfilePic}
-            style={
-              (styles.profilePic, { width: 50, height: 50, borderRadius: 50 })
-            }
-          />
-          <View style={styles.profileData}>
-            <Text style={styles.profileName}>{user.name}</Text>
+          <Image source={ProfilePic} style={styles.profilePic} />
+          <View>
+            <Text style={styles.profileName}>{user.name} Lima</Text>
             <Text style={styles.bio}>
               {/* {DateFNS.differenceInYears(user.birthday, new Date())} anos, */}
               35 anos, 1,78cm, 100Kg
             </Text>
+            <Text style={styles.memberSince}>Membro desde: 15/04/2020</Text>
           </View>
-          <Feather name='edit-2' size={30} color='#FFF' onPress={() => {}} />
+          <Feather name='edit-2' size={20} color='#FFF' onPress={() => {}} />
+        </View>
+
+        <View style={styles.body}>
+          <Text style={styles.bodyTxt}>Seus treinos:</Text>
         </View>
       </ImageBackground>
     );

@@ -15,13 +15,35 @@ import DailyTrainning from '../pages/DailyTrainning';
 import TrainningDetail from '../pages/DailyTrainning/TrainningDetail';
 
 export default function AppRoutes() {
-  function TrainningStack() {
+  function ProfileRoute() {
     return (
       <AppStack.Navigator screenOptions={{ headerShown: false }}>
-        <AppStack.Screen name='Dashboard' component={Dashboard} />
-        <AppStack.Screen name='Treino do dia' component={DailyTrainning} />
-        <AppStack.Screen name='Exercício' component={TrainningDetail} />
+        <AppStack.Screen name='Seu Perfil' component={Profile} />
       </AppStack.Navigator>
+    );
+  }
+  function TrainningStack() {
+    return (
+      <>
+        <Header />
+        <AppStack.Navigator screenOptions={{ headerShown: false }}>
+          <AppStack.Screen name='Dashboard' component={Dashboard} />
+          <AppStack.Screen name='Treino do dia' component={DailyTrainning} />
+          <AppStack.Screen name='Exercício' component={TrainningDetail} />
+        </AppStack.Navigator>
+      </>
+    );
+  }
+
+  function HistoricRoute() {
+    return (
+      <>
+        <Header />
+        <AppStack.Navigator screenOptions={{ headerShown: false }}>
+          <AppStack.Screen name='Historic' component={Historic} />
+          <AppStack.Screen name='HistoricDetail' component={HistoricDetail} />
+        </AppStack.Navigator>
+      </>
     );
   }
   return (
@@ -63,9 +85,9 @@ export default function AppRoutes() {
           },
         }}
       >
-        <Tab.Screen name='Seu Perfil' component={Profile} />
+        <Tab.Screen name='Seu Perfil' component={ProfileRoute} />
         <Tab.Screen name='Treino do dia' component={TrainningStack} />
-        <Tab.Screen name='Histórico' component={Historic} />
+        <Tab.Screen name='Histórico' component={HistoricRoute} />
       </Tab.Navigator>
     </>
   );
