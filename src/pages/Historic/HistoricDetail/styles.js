@@ -8,6 +8,14 @@ export default StyleSheet.create({
     height: 50,
     paddingHorizontal: 10
   },
+  selected: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 50,
+    paddingHorizontal: 10,
+    backgroundColor: '#F0F0F0'
+  },
   headerText: {
     fontSize: 20,
     fontFamily: 'RobotoCondensed_400Regular',
@@ -17,7 +25,16 @@ export default StyleSheet.create({
     fontSize: 16,
     fontFamily: 'RobotoCondensed_400Regular',
     color: '#3A362D',
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    marginBottom: 5
+  },
+  selectedContent: {
+    fontSize: 16,
+    fontFamily: 'RobotoCondensed_400Regular',
+    color: '#3A362D',
+    paddingHorizontal: 20,
+    backgroundColor: '#F0F0F0',
+    marginBottom: 5
   },
   contentTxt: {
     fontSize: 20,

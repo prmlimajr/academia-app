@@ -26,7 +26,7 @@ export default function WeightChart() {
         }
       ]
     }}
-    width={Dimensions.get("window").width} // from react-native
+    width={Dimensions.get("window").width - 40} // from react-native
     height={220}
     yAxisSuffix="Kg"
     yAxisInterval={1} // optional, defaults to 1

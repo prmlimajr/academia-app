@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import * as DateFns from 'date-fns'
 import * as Locale  from 'date-fns/locale/pt-BR'
 import Accordion from 'react-native-collapsible/Accordion';
+import * as Animatable from 'react-native-animatable';
 
 import styles from './styles';
 
@@ -96,27 +97,53 @@ export default function HistoricDetail() {
 
   const trainning = route.params.trainning;
 
-  const renderHeader = section => {
+  const renderHeader = (section, index, isActive, sections) => {
     return (
       <>
-        <View style={styles.header}>
+        <Animatable.View
+          duration={300}
+          transition="backgroundColor"
+          style={activeSections[0] === section.id - 1 ? styles.selected : styles.header}
+          // style={{ backgroundColor: (isActive ? 'rgba(255,255,255,1)' : 'rgba(245,252,255,1)') }}
+        >
           <Text style={styles.headerText}>{section.title}</Text>
-          <Feather name={activeSections[0] === section.id - 1 ? 'chevron-up' : 'chevron-down'} size={20} color='#3A362D' onPress={() => navigation.goBack()} />
-        </View>
+          <Feather name={activeSections[0] === section.id - 1 ? 'chevron-up' : 'chevron-down'} size={20} color='#3A362D' />
+        </Animatable.View>
         {!(activeSections[0] === section.id - 1) && <View style={styles.line} />}
       </>
     );
   };
 
-  const renderContent = section => {
+  const renderContent = (section, i, isActive, sections) => {
     return (
       <>
-        <View style={styles.content}>
-          <Text style={styles.contentTxt}>Repetições: {section.content.repetitions}</Text>
-          <Text style={styles.contentTxt}>Intervalo: {section.content.interval}</Text>
-          <Text style={styles.contentTxt}>Séries: {section.content.series}</Text>
-          <Text style={styles.contentTxt}>Carga: {section.content.load}</Text>
-        </View>
+        <Animatable.View
+          duration={300}
+          transition="backgroundColor" 
+          style={activeSections[0] === section.id - 1 ? styles.selectedContent : styles.content}
+          // style={{ backgroundColor: (isActive ? 'rgba(255,255,255,1)' : 'rgba(245,252,255,1)') }}
+        >
+          <Animatable.Text
+          duration={300}
+          easing="ease-out"
+          animation={isActive ? 'zoomIn' : false} 
+          style={styles.contentTxt}>Repetições: {section.content.repetitions}</Animatable.Text>
+          <Animatable.Text
+          duration={300}
+          easing="ease-out"
+          animation={isActive ? 'zoomIn' : false} 
+          style={styles.contentTxt}>Intervalo: {section.content.interval}</Animatable.Text>
+          <Animatable.Text
+          duration={300}
+          easing="ease-out"
+          animation={isActive ? 'zoomIn' : false} 
+          style={styles.contentTxt}>Séries: {section.content.series}</Animatable.Text>
+          <Animatable.Text
+          duration={300}
+          easing="ease-out"
+          animation={isActive ? 'zoomIn' : false} 
+          style={styles.contentTxt}>Carga: {section.content.load}</Animatable.Text>
+        </Animatable.View>
         {(activeSections[0] === section.id - 1) && <View style={styles.line} />}
       </>
     );
