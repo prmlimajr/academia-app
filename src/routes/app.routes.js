@@ -8,6 +8,7 @@ const Tab = createBottomTabNavigator();
 
 import Header from '../components/Header';
 import Profile from '../pages/Profile';
+import WeightControl from '../pages/Profile/WeightControl';
 import Historic from '../pages/Historic';
 import HistoricDetail from '../pages/Historic/HistoricDetail';
 import Dashboard from '../pages/Dashboard';
@@ -19,6 +20,7 @@ export default function AppRoutes() {
     return (
       <AppStack.Navigator screenOptions={{ headerShown: false }}>
         <AppStack.Screen name='Seu Perfil' component={Profile} />
+        <AppStack.Screen name='Controle de peso' component={WeightControl} />
       </AppStack.Navigator>
     );
   }

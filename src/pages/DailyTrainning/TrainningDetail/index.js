@@ -29,6 +29,7 @@ export default function TrainningDetail() {
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
+    console.log(trainning)
     return (
       <>
         <View style={styles.container}>
